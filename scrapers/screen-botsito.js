@@ -21,11 +21,12 @@ const screenBotsito = async (res) => {
     await page.goto('https://hiring.amazon.ca/app#/jobSearch', { waitUntil: 'load', timeout: 0 })
 
     console.log("IN PAGE")
-    const cookieBtn = "#stencil-modal-body > div > div > div > div > div:nth-child(2) > button"
+    const cookieBtnEl = "#stencil-modal-body > div > div > div > div > div:nth-child(2) > button"
 
-    await page.waitForSelector(cookieBtn)
+    await page.waitForSelector(cookieBtnEl)
     console.log("CLICK")
-    await page.click(cookieBtn)
+    const cookieBtn = await page.$(cookieBtnEl)
+    await cookieBtn.click()
 
 
 
@@ -35,7 +36,7 @@ const screenBotsito = async (res) => {
     res.send("SCREEN")
   } catch (e) {
     console.error(e)
-    res.send(`Something went wrong while running Puppeteer: ${e}`)
+    res.send(`SCREE-BOT ERROR: ${e}`)
   } finally {
     await browser.close()
   }
