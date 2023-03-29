@@ -3,6 +3,7 @@ require("dotenv").config()
 
 const screenBotsito = async (res) => {
   const browser = await puppeteer.launch({
+    ignoreDefaultArgs: true,
     args: [
       "--disable-setuid-sandbox",
       "--no-sandbox",
@@ -13,13 +14,14 @@ const screenBotsito = async (res) => {
       process.env.NODE_ENV === "production"
         ? process.env.PUPPETEER_EXECUTABLE_PATH
         : puppeteer.executablePath(),
+    headless: process.env.NODE_ENV === "production" ? true : false
   })
   try {
     const page = await browser.newPage()
 
     console.log("--GOTO--")
 
-    await page.goto('https://hiring.amazon.ca/app#/jobSearch')
+    await page.goto('https://hiring.amazon.ca/app#/jobSearch', { waitUntil: 'load', timeout: 0 })
 
     console.log("--YA EN AMAZON--")
 
@@ -27,11 +29,14 @@ const screenBotsito = async (res) => {
     await page.waitForSelector("#stencil-modal-body > div > div > div > div > div:nth-child(2) > button", { visible: true, timeout: 30000 })
     const cookieBtn = await page.$("#stencil-modal-body > div > div > div > div > div:nth-child(2) > button")
     if (cookieBtn) {
+      console.log("--EXISTE BOTON--")
+
       console.log(cookieBtn)
-      if (await cookieBtn.isIntersectable()) {
-        console.log("--BOTSITOBTN--")
-        await cookieBtn.click()
-      }
+      // if (await cookieBtn.isIntersectable) {
+      //   console.log("--ES LCICABLE BOTON--")
+
+      await cookieBtn.click()
+      // }
     }
 
     console.log("--BOTSITO CLIC--")
@@ -51,7 +56,7 @@ const screenBotsito = async (res) => {
 
     res.status(200).json({ "screen": "" })
   } catch (e) {
-    console.error(e)
+    console.log(e)
     res.status(200).json({ "error": e })
 
   } finally {
