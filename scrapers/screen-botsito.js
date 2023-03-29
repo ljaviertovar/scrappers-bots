@@ -27,13 +27,17 @@ const screenBotsito = async (res) => {
 
     await page.waitForSelector(cookieBtnEl)
     console.log("BTN")
-    await page.click(cookieBtnEl)
-    // const cookieBtn = await page.$(cookieBtnEl)
-    // console.log(cookieBtn)
-    // if (cookieBtn) {
-    //   console.log("CLICK")
-    //   await cookieBtn.click()
-    // }
+    // await page.click(cookieBtnEl)
+    const cookieBtn = await page.$(cookieBtnEl)
+    console.log(cookieBtn)
+    try {
+      console.log("CLICK")
+      await cookieBtn.click()
+
+    } catch (error) {
+      console.log("NOBTN")
+    }
+
 
 
 
