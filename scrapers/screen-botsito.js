@@ -13,42 +13,20 @@ const screenBotsito = async (res) => {
       process.env.NODE_ENV === "production"
         ? process.env.PUPPETEER_EXECUTABLE_PATH
         : puppeteer.executablePath(),
-    headless: process.env.NODE_ENV === "production"
   })
   try {
     const page = await browser.newPage()
-    console.log("GOTO")
 
-    await page.goto('https://google.com', { waitUntil: 'load', timeout: 0 })
-    await new Promise(r => setTimeout(r, 1000))
+    await page.goto('https://hiring.amazon.ca/app#/jobSearch')
 
-    console.log("IN PAGE")
-    const cookieBtnEl = "#stencil-modal-body > div > div > div > div > div:nth-child(2) > button"
-
-    await page.waitForSelector(cookieBtnEl)
-    console.log("BTN")
-    try {
-      console.log("CLICK")
-      // const cookieBtn = await page.$(cookieBtnEl)
-      // console.log(cookieBtn)
-      await page.click(cookieBtnEl)
-      // await cookieBtn.click()
-
-    } catch (error) {
-      console.log("NOBTN")
-    }
+    // Set screen size
+    await page.setViewport({ width: 1080, height: 1024 })
 
 
-
-
-
-    // Print the full title
-
-    console.log("TERMINO")
-    res.send("SCREEN")
+    res.send("WTF")
   } catch (e) {
     console.error(e)
-    res.send(`SCREE-BOT ERROR: ${e}`)
+    res.send(`Something went wrong while running Puppeteer: ${e}`)
   } finally {
     await browser.close()
   }
