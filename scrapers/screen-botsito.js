@@ -17,32 +17,36 @@ const screenBotsito = async (res) => {
   try {
     const page = await browser.newPage()
 
-    await page.goto("https://developer.chrome.com/")
+    await page.goto('https://hiring.amazon.ca/app#/jobSearch')
 
-    // Set screen size
-    await page.setViewport({ width: 1080, height: 1024 })
+    await page.waitForSelector("#stencil-modal-body > div > div > div > div > div:nth-child(2) > button")
+    const cookieBtn = await page.$("#stencil-modal-body > div > div > div > div > div:nth-child(2) > button")
+    if (cookieBtn) {
+      console.log("--BOTSITOBTN--")
 
-    // Type into search box
-    await page.type(".search-box__input", "automate beyond recorder")
+      await cookieBtn.click()
+    }
 
-    // Wait and click on first result
-    const searchResultSelector = ".search-box__link"
-    await page.waitForSelector(searchResultSelector)
-    await page.click(searchResultSelector)
+    console.log("--BOTSITO CLIC--")
 
-    // Locate the full title with a unique string
-    const textSelector = await page.waitForSelector(
-      "text/Customize and automate"
-    )
-    const fullTitle = await textSelector.evaluate((el) => el.textContent)
 
-    // Print the full title
-    const logStatement = `The title of this blog post is ${fullTitle}`
-    console.log(logStatement)
-    res.send(logStatement)
+    // await new Promise(r => setTimeout(r, 2000))
+    console.log("--BOTSITO ESPERO--")
+
+    await page.screenshot({ path: 'jobs.jpg', fullPage: true })
+    console.log("--BOTSITO SCREEN--")
+
+
+    console.log("--BOTSITO FINISHED--")
+
+
+
+
+    res.status(200).json({ "screen": "" })
   } catch (e) {
     console.error(e)
-    res.send(`Something went wrong while running Puppeteer: ${e}`)
+    res.status(200).json({ "error": e })
+
   } finally {
     await browser.close()
   }
