@@ -17,10 +17,11 @@ const screenBotsito = async (res) => {
   try {
     const page = await browser.newPage()
 
-    await page.goto('https://hiring.amazon.ca/app#/jobSearch')
+    await page.goto('https://hiring.amazon.ca/app#/jobSearch', { waitUntil: "load", timeout: 0 })
 
     // Set screen size
     await page.setViewport({ width: 1080, height: 1024 })
+    await page.screenshot({ path: 'jobs.jpg', fullPage: true })
 
 
     res.send("WTF")
