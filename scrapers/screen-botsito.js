@@ -19,7 +19,7 @@ const screenBotsito = async (res) => {
     const page = await browser.newPage()
     console.log("GOTO")
 
-    await page.goto('https://hiring.amazon.ca/app#/jobSearch', { waitUntil: 'load', timeout: 0 })
+    await page.goto('https://google.com', { waitUntil: 'load', timeout: 0 })
     await new Promise(r => setTimeout(r, 1000))
 
     console.log("IN PAGE")
