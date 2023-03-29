@@ -18,9 +18,11 @@ const screenBotsito = async (res) => {
     const page = await browser.newPage()
     console.log("GOTO")
 
-    await page.goto('https://hiring.amazon.ca/app#/jobSearch')
+    await page.goto('https://hiring.amazon.ca/app#/jobSearch', { waitUntil: 'load', timeout: 0 })
 
+    console.log("IN PAGE")
     const cookieBtn = "#stencil-modal-body > div > div > div > div > div:nth-child(2) > button"
+
     await page.waitForSelector(cookieBtn)
     console.log("CLICK")
     await page.click(cookieBtn)
