@@ -13,6 +13,7 @@ const screenBotsito = async (res) => {
       process.env.NODE_ENV === "production"
         ? process.env.PUPPETEER_EXECUTABLE_PATH
         : puppeteer.executablePath(),
+    headless: true
   })
   try {
     const page = await browser.newPage()
@@ -24,9 +25,14 @@ const screenBotsito = async (res) => {
     const cookieBtnEl = "#stencil-modal-body > div > div > div > div > div:nth-child(2) > button"
 
     await page.waitForSelector(cookieBtnEl)
-    console.log("CLICK")
+    console.log("BTN")
     const cookieBtn = await page.$(cookieBtnEl)
-    await cookieBtn.click()
+    console.log(cookieBtn)
+    if (cookieBtn) {
+      console.log("CLICK")
+      await cookieBtn.click()
+    }
+
 
 
 
