@@ -16,18 +16,20 @@ const screenBotsito = async (res) => {
   })
   try {
     const page = await browser.newPage()
+    console.log("GOTO")
 
     await page.goto('https://hiring.amazon.ca/app#/jobSearch')
 
-    const cookieBtn = ".search-box__link"
+    const cookieBtn = "#stencil-modal-body > div > div > div > div > div:nth-child(2) > button"
     await page.waitForSelector(cookieBtn)
+    console.log("CLICK")
     await page.click(cookieBtn)
 
 
 
     // Print the full title
-    const logStatement = `The title of this blog post is ${fullTitle}`
-    console.log(logStatement)
+
+    console.log("TERMINO")
     res.send(logStatement)
   } catch (e) {
     console.error(e)
