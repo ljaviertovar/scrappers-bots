@@ -17,7 +17,12 @@ const screenBotsito = async (res) => {
   try {
     const page = await browser.newPage()
 
+    console.log("--GOTO--")
+
     await page.goto('https://hiring.amazon.ca/app#/jobSearch')
+
+    console.log("--YA EN AMAZON--")
+
 
     await page.waitForSelector("#stencil-modal-body > div > div > div > div > div:nth-child(2) > button")
     const cookieBtn = await page.$("#stencil-modal-body > div > div > div > div > div:nth-child(2) > button")
