@@ -24,7 +24,7 @@ const screenBotsito = async (res) => {
     console.log("--YA EN AMAZON--")
 
 
-    await page.waitForSelector("#stencil-modal-body > div > div > div > div > div:nth-child(2) > button", { visible: true, timeout: 3000 })
+    await page.waitForSelector("#stencil-modal-body > div > div > div > div > div:nth-child(2) > button", { visible: true, timeout: 30000 })
     const cookieBtn = await page.$("#stencil-modal-body > div > div > div > div > div:nth-child(2) > button")
     if (cookieBtn) {
       console.log(cookieBtn)
