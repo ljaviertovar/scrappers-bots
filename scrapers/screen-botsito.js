@@ -13,37 +13,36 @@ const screenBotsito = async (res) => {
       process.env.NODE_ENV === "production"
         ? process.env.PUPPETEER_EXECUTABLE_PATH
         : puppeteer.executablePath(),
-    headless: process.env.NODE_ENV === "production" ? true : false
   })
   try {
     const page = await browser.newPage()
 
-    await page.goto('https://hiring.amazon.ca/app#/jobSearch')
-    console.log("--WAITBTN--")
+    await page.goto("https://developer.chrome.com/")
 
-    await page.waitForSelector("#stencil-modal-body > div > div > div > div > div:nth-child(2) > button")
-    const cookieBtn = await page.$("#stencil-modal-body > div > div > div > div > div:nth-child(2) > button")
-    if (cookieBtn) {
-      console.log("--BOTSITOBTN--")
+    // Set screen size
+    await page.setViewport({ width: 1080, height: 1024 })
 
-      await cookieBtn.click()
-    }
+    // Type into search box
+    await page.type(".search-box__input", "automate beyond recorder")
 
-    console.log("--BOTSITO CLIC--")
+    // Wait and click on first result
+    const searchResultSelector = ".search-box__link"
+    await page.waitForSelector(searchResultSelector)
+    await page.click(searchResultSelector)
 
+    // Locate the full title with a unique string
+    const textSelector = await page.waitForSelector(
+      "text/Customize and automate"
+    )
+    const fullTitle = await textSelector.evaluate((el) => el.textContent)
 
-    await new Promise(r => setTimeout(r, 1000))
-    console.log("--BOTSITO ESPERO--")
-
-    await page.screenshot({ path: 'jobs.jpg', fullPage: true })
-    console.log("--BOTSITO SCREEN--")
-
-    console.log("--BOTSITO FINISHED--")
-
-    res.status(200).json({ "screenshot": "" })
-  } catch (error) {
+    // Print the full title
+    const logStatement = `The title of this blog post is ${fullTitle}`
+    console.log(logStatement)
+    res.send(logStatement)
+  } catch (e) {
     console.error(e)
-    res.status(500).json({ error })
+    res.send(`Something went wrong while running Puppeteer: ${e}`)
   } finally {
     await browser.close()
   }
