@@ -19,40 +19,10 @@ const screenBotsito = async (res) => {
   try {
     const page = await browser.newPage()
 
-    console.log("--GOTO--")
-
-    await page.goto('https://hiring.amazon.ca/app#/jobSearch', { waitUntil: 'load', timeout: 0 })
-
-    console.log("--YA EN AMAZON--")
-
-
-    await page.waitForSelector("#stencil-modal-body > div > div > div > div > div:nth-child(2) > button", { visible: true, timeout: 30000 })
-    const cookieBtn = await page.$("#stencil-modal-body > div > div > div > div > div:nth-child(2) > button")
-    if (cookieBtn) {
-      console.log("--EXISTE BOTON--")
-
-      console.log(cookieBtn)
-      // if (await cookieBtn.isIntersectable) {
-      //   console.log("--ES LCICABLE BOTON--")
-
-      await cookieBtn.click()
-      // }
-    }
-
-    console.log("--BOTSITO CLIC--")
-
-
-    await new Promise(r => setTimeout(r, 1000))
-    console.log("--BOTSITO ESPERO--")
+    await page.goto("https://developer.chrome.com/")
 
     await page.screenshot({ path: 'jobs.jpg', fullPage: true })
     console.log("--BOTSITO SCREEN--")
-
-
-    console.log("--BOTSITO FINISHED--")
-
-
-
 
     res.status(200).json({ "screen": "" })
   } catch (e) {
