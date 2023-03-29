@@ -1,6 +1,13 @@
 const puppeteer = require("puppeteer")
 require("dotenv").config()
 
+const cloudinary = require("cloudinary").v2
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+})
+
 const screenBotsito = async (res) => {
   const browser = await puppeteer.launch({
     args: [
@@ -23,8 +30,10 @@ const screenBotsito = async (res) => {
     await page.setViewport({ width: 1080, height: 1024 })
     await page.screenshot({ path: 'jobs.jpg', fullPage: true })
 
+    const imageJobs = await cloudinary.uploader
+      .upload("jobs.jpg")
 
-    res.send("WTF")
+    res.send(imageJobs.secure_url)
   } catch (e) {
     console.error(e)
     res.send(`Something went wrong while running Puppeteer: ${e}`)
