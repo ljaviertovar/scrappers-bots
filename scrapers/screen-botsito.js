@@ -30,7 +30,7 @@ const screenBotsito = async (res) => {
     // Print the full title
 
     console.log("TERMINO")
-    res.send(logStatement)
+    res.send("SCREEN")
   } catch (e) {
     console.error(e)
     res.send(`Something went wrong while running Puppeteer: ${e}`)
