@@ -24,18 +24,20 @@ const screenBotsito = async (res) => {
     console.log("--YA EN AMAZON--")
 
 
-    await page.waitForSelector("#stencil-modal-body > div > div > div > div > div:nth-child(2) > button")
+    await page.waitForSelector("#stencil-modal-body > div > div > div > div > div:nth-child(2) > button", { visible: true, timeout: 3000 })
     const cookieBtn = await page.$("#stencil-modal-body > div > div > div > div > div:nth-child(2) > button")
     if (cookieBtn) {
-      console.log("--BOTSITOBTN--")
-
-      await cookieBtn.click()
+      console.log(cookieBtn)
+      if (await cookieBtn.isIntersectable()) {
+        console.log("--BOTSITOBTN--")
+        await cookieBtn.click()
+      }
     }
 
     console.log("--BOTSITO CLIC--")
 
 
-    // await new Promise(r => setTimeout(r, 2000))
+    await new Promise(r => setTimeout(r, 1000))
     console.log("--BOTSITO ESPERO--")
 
     await page.screenshot({ path: 'jobs.jpg', fullPage: true })
