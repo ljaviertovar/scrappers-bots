@@ -13,25 +13,27 @@ const screenBotsito = async (res) => {
       process.env.NODE_ENV === "production"
         ? process.env.PUPPETEER_EXECUTABLE_PATH
         : puppeteer.executablePath(),
-    headless: true
+    headless: false
   })
   try {
     const page = await browser.newPage()
     console.log("GOTO")
 
     await page.goto('https://hiring.amazon.ca/app#/jobSearch', { waitUntil: 'load', timeout: 0 })
+    await new Promise(r => setTimeout(r, 1000))
 
     console.log("IN PAGE")
     const cookieBtnEl = "#stencil-modal-body > div > div > div > div > div:nth-child(2) > button"
 
     await page.waitForSelector(cookieBtnEl)
     console.log("BTN")
-    const cookieBtn = await page.$(cookieBtnEl)
-    console.log(cookieBtn)
-    if (cookieBtn) {
-      console.log("CLICK")
-      await cookieBtn.click()
-    }
+    await page.click(cookieBtnEl)
+    // const cookieBtn = await page.$(cookieBtnEl)
+    // console.log(cookieBtn)
+    // if (cookieBtn) {
+    //   console.log("CLICK")
+    //   await cookieBtn.click()
+    // }
 
 
 
