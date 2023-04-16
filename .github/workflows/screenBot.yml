@@ -2,7 +2,7 @@ name: ScreenBot
 
 on:
   schedule:
-    - cron: "*/24 * * * *"
+    - cron: "*/44 * * * *"
   workflow_dispatch:
 
 jobs:
