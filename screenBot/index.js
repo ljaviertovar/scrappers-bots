@@ -26,7 +26,7 @@ const { getScreen } = require('../playwright/scrapers/getScreenJob');
       .upload(screenshotResult.screenshot)
     console.log("clo result", imageJobs)
     const imagePath = imageJobs.secure_url
-
+console.log("img", imagePath)
 
     console.log("--SENDING TELEGRAM--")
     bot.sendPhoto(chatId, imagePath)
