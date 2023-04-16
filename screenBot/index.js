@@ -24,21 +24,19 @@ const { getScreen } = require('../playwright/scrapers/getScreenJob');
     console.log("--UPLOADING SCREENSHOT--")
     const imageJobs = await cloudinary.uploader
       .upload(screenshotResult.screenshot)
-    console.log("clo result", imageJobs)
     const imagePath = imageJobs.secure_url
-console.log("img", imagePath)
 
     console.log("--SENDING TELEGRAM--")
-    bot.sendPhoto(chatId, imagePath)
-      .then((message) => {
-        console.log('Imagen enviada:', message.photo)
-      })
-      .catch((error) => {
-        console.error('Error al enviar la imagen:', error)
-      })
+
+    try {
+      const botResponse = await bot.sendPhoto(chatId, imagePath)
+      console.log(botResponse.photo)
+    }
+    catch (err) {
+      console.log("--ERR BOT--", err)
+    }
 
     console.log("--BOTSITO LO HA ECHO!--")
-
     process.exit(0)
 
   } catch (error) {
