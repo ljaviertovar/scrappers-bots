@@ -1,0 +1,23 @@
+{
+	"name": "screenshot-pptt",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"get-screen-job": "node playwright/scrapers/getScreenJob.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/ljaviertovar/screenshot-pptt.git"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/ljaviertovar/screenshot-pptt/issues"
+	},
+	"homepage": "https://github.com/ljaviertovar/screenshot-pptt#readme",
+	"dependencies": {
+		"playwright": "^1.32.3"
+	}
+}
