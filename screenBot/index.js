@@ -2,8 +2,8 @@ require('dotenv').config()
 
 const TelegramBot = require('node-telegram-bot-api')
 const bot = new TelegramBot(process.env.TELEGRAM_TOKEN, { polling: true })
-const chatId = 5763359235
-// const chatId = 1138129996
+// const chatId = 5763359235 //myChat
+const chatId = 1138129996
 
 const cloudinary = require("cloudinary").v2
 cloudinary.config({
