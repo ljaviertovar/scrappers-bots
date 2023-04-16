@@ -4,7 +4,8 @@
 	"description": "",
 	"main": "index.js",
 	"scripts": {
-		"get-screen-job": "node playwright/scrapers/getScreenJob.js"
+		"get-screen-job": "node playwright/scrapers/getScreenJob.js",
+		"screen-bot": "node screenBot/index.js"
 	},
 	"repository": {
 		"type": "git",
@@ -18,6 +19,9 @@
 	},
 	"homepage": "https://github.com/ljaviertovar/screenshot-pptt#readme",
 	"dependencies": {
+		"cloudinary": "^1.36.1",
+		"dotenv": "^16.0.3",
+		"node-telegram-bot-api": "^0.61.0",
 		"playwright": "^1.32.3"
 	}
 }

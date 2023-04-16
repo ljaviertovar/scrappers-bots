@@ -107,6 +107,5 @@ dist
 
 # screenshots
 *.jpg
-!*/
 
 node_modules

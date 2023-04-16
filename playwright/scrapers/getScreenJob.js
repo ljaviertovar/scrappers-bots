@@ -32,6 +32,7 @@ const getScreen = async () => {
     await page.screenshot({ path: screenshot, fullPage: true })
     await browser.close()
 
+    console.log("--SCRAPING FINISHED--")
     return { result: "OK", screenshot }
 
   } catch (error) {
@@ -43,5 +44,3 @@ const getScreen = async () => {
 }
 
 module.exports = { getScreen }
-
-getScreen()
