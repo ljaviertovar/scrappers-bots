@@ -20,7 +20,7 @@ jobs:
 
       - run: npx playwright install --with-deps
 
-      - run: node playwright/scrapers/getScreenJob.js
+      - run: node screenBot/index.js
         env:
           PUBLIC_CLOUDINARY_CLOUD_NAME: ${{ secrets.PUBLIC_CLOUDINARY_CLOUD_NAME }}
           CLOUDINARY_API_KEY: ${{ secrets.CLOUDINARY_API_KEY }}
