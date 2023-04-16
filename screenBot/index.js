@@ -24,7 +24,9 @@ const { getScreen } = require('../playwright/scrapers/getScreenJob');
     console.log("--UPLOADING SCREENSHOT--")
     const imageJobs = await cloudinary.uploader
       .upload(screenshotResult.screenshot)
+    console.log("clo result", imageJobs)
     const imagePath = imageJobs.secure_url
+
 
     console.log("--SENDING TELEGRAM--")
     bot.sendPhoto(chatId, imagePath)
