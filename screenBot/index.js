@@ -37,14 +37,12 @@ const { getScreen } = require('../playwright/scrapers/getScreenJob');
 
     console.log("--BOTSITO LO HA ECHO!--")
 
-    return {
-      status: "OK"
-    }
+    process.exit(0)
 
   } catch (error) {
     console.log("--BOTSITO FALLEN--")
     console.log(error)
-    return null
+    process.exit(1)
   }
 
 })()
