@@ -19,6 +19,7 @@ const { getScreen } = require('../playwright/scrapers/getScreenJob');
   try {
 
     const screenshotResult = await getScreen()
+    if (screenshotResult.result === "FAIL") return null
 
     console.log("--UPLOADING SCREENSHOT--")
     const imageJobs = await cloudinary.uploader
@@ -43,9 +44,7 @@ const { getScreen } = require('../playwright/scrapers/getScreenJob');
   } catch (error) {
     console.log("--BOTSITO FALLEN--")
     console.log(error)
-    return {
-      error
-    }
+    return null
   }
 
 })()
