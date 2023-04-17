@@ -22,8 +22,7 @@ const { getScreen } = require('../playwright/scrapers/getScreenJob');
     if (screenshotResult.result === "FAIL") return null
 
     console.log("--UPLOADING SCREENSHOT--")
-    const imageJobs = await cloudinary.uploader
-      .upload(screenshotResult.screenshot)
+    const imageJobs = await cloudinary.uploader.unsigned_upload(screenshotResult.screenshot, "screenshotsJobs")
     const imagePath = imageJobs.secure_url
 
     console.log("--SENDING TELEGRAM--")
