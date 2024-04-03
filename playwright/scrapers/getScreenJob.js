@@ -18,8 +18,8 @@ const getScreen = async () => {
     await page.goto(url, { waitUntil: "networkidle0", timeout: 1200000 })
 
     console.log("--WAITING BTN--")
-    await page.waitForSelector("#stencil-modal-body > div > div > div > div > div:nth-child(2) > button")
-    const cookieBtn = await page.$("#stencil-modal-body > div > div > div > div > div:nth-child(2) > button")
+    await page.waitForSelector("button[data-test-id='consentBtn']")
+    const cookieBtn = await page.$("button[data-test-id='consentBtn']")
     if (cookieBtn) {
       console.log("--CLICK BTN--")
       await cookieBtn.click()
